@@ -1,6 +1,7 @@
 # 32_countdown
 
-- countdown from 32 to 1
+- counter for countdown from 32 to 1
+- [Demo website](https://gift-li.github.io/32_countdown)
 
 ## Project Setup
 

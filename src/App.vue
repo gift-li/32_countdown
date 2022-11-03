@@ -1,47 +1,64 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { ref } from "vue";
+import data from "./assets/data.json";
+import Number from "./components/Number.vue";
+import Operation from "./components/Operation.vue";
+import Toolbar from "./components/Toolbar.vue";
+
+let counter = ref(32);
+let number = ref(32);
+let operation = ref([]);
+
+function randomize(len) {
+    return Math.random() % len;
+}
+function countdown() {
+    this.counter.value--;
+}
+function reset() {
+    this.counter.value = 32;
+}
+
+// export default {
+//     components: ["Number", "Operation", "Toolbar"],
+//     data() {
+//         return {
+//             counter: 32,
+//             data: data,
+//         };
+//     },
+//     methods: {
+//         randomize(len) {
+//             Math.random() % len;
+//         },
+//         countdown() {
+//             this.counter--;
+//         },
+//         reset() {
+//             this.counter = 32;
+//         },
+//     },
+// };
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <main class="container vh-100 vw-100">
+        <div class="row mx-5 p-5 justify-content-center">
+            <div class="col">
+                <Number />
+            </div>
+        </div>
+        <div class="row mx-5 p-5 justify-content-center">
+            <div class="col">
+                <Operation />
+            </div>
+        </div>
+        <div class="row mx-5 p-5 justify-content-center">
+            <div class="col">
+                <Toolbar />
+            </div>
+        </div>
+    </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+<style scoped></style>
