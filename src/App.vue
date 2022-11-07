@@ -1,61 +1,36 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import data from "./assets/data.json";
 import Number from "./components/Number.vue";
 import Operation from "./components/Operation.vue";
 import Toolbar from "./components/Toolbar.vue";
 
 let counter = ref(32);
-let number = ref(32);
-let operation = ref([]);
+let operations = ref(["x", "+", "+", "+"]);
 
-function randomize(len) {
-    return Math.random() % len;
-}
-function countdown() {
-    this.counter.value--;
-}
-function reset() {
-    this.counter.value = 32;
+function random_choose(array) {
+    return array[Math.floor(Math.random() * array.length)];
 }
 
-// export default {
-//     components: ["Number", "Operation", "Toolbar"],
-//     data() {
-//         return {
-//             counter: 32,
-//             data: data,
-//         };
-//     },
-//     methods: {
-//         randomize(len) {
-//             Math.random() % len;
-//         },
-//         countdown() {
-//             this.counter--;
-//         },
-//         reset() {
-//             this.counter = 32;
-//         },
-//     },
-// };
+function updateCounter(newVal) {
+    counter.value = newVal;
+    operations.value = random_choose(data[counter.value]["operation"]);
+}
 </script>
 
 <template>
     <main class="container vh-100 vw-100">
-        <div class="row mx-5 p-5 justify-content-center">
-            <div class="col">
-                <Number />
+        <div
+            class="row h-100 mx-5 p-5 justify-content-center align-items-center"
+        >
+            <div class="col=12 text-center">
+                <Number :counter="counter" />
             </div>
-        </div>
-        <div class="row mx-5 p-5 justify-content-center">
-            <div class="col">
-                <Operation />
+            <div class="col=12 text-center">
+                <Operation :operations="operations" />
             </div>
-        </div>
-        <div class="row mx-5 p-5 justify-content-center">
-            <div class="col">
-                <Toolbar />
+            <div class="col=12 text-center">
+                <Toolbar :counter="counter" @update:counter="updateCounter" />
             </div>
         </div>
     </main>
