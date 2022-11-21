@@ -24,12 +24,12 @@ function pause() {
 </script>
 
 <template>
-    <div class="d-flex justify-content-around">
+    <div class="col-12 d-flex justify-content-center align-items-center">
         <button class="btn btn-lg btn-primary" @click.prevent="countdown">
-            start
+            countdown<i class="bi bi-play-fill ms-1"></i>
         </button>
-        <button class="btn btn-lg btn-secondary" @click.prevent="pause">
-            pause
+        <button class="btn btn-lg btn-secondary ms-5" @click.prevent="pause">
+            pause<i class="bi bi-pause ms-1"></i>
         </button>
     </div>
 </template>
